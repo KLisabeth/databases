@@ -10,9 +10,14 @@ const DB_PATH = path.join(__dirname, '..', 'chinook.sqlite');
 
 const db = new sqlite3.Database(DB_PATH);
 
-const userInput = {};
-
-const queryString = ``;
+const userInput = {
+  column: process.argv[2],
+  table: process.argv[3]
+};
+//Select distinct Composer From Track
+const queryString = `
+Select distinct ${userInput.column} 
+From ${userInput.table}`;
 
 db.all(queryString, (err, rows) => {
   if (err) {
